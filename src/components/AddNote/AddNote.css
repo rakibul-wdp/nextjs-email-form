@@ -1,0 +1,67 @@
+.todo__input {
+  background-color: rgb(226, 222, 222);
+  height: 35px;
+  border: 3px solid rgb(226, 222, 222);
+  padding: 1px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  margin-right: 10px;
+  margin-left: 0px;
+  border-radius: 5px;
+}
+
+.button__input {
+  margin-left: 40%;
+  width: 100px;
+  height: 40px;
+  border: #d67636;
+  background: #d37537;
+  text-align: center;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+}
+.todo__form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 10px;
+  border: 3px solid rgb(37, 158, 214);
+  border-radius: 15px;
+  max-width: 65%;
+  width: 50%;
+  background-color: rgb(96, 184, 190);
+}
+.form__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo__date {
+  max-width: 80px;
+  border-radius: 5px;
+  background-color: rgb(226, 222, 222);
+  margin-left: 10px;
+  padding: 0.4rem;
+  border: none;
+  margin-bottom: 30px;
+}
+.todo__tag {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(226, 222, 222);
+  border-radius: 5px;
+}
+.todo__tag > * {
+  margin: 10px;
+  height: 30px;
+}
+.todo__desc {
+  background: rgb(226, 222, 222);
+  min-height: 50px;
+  min-width: 170px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
