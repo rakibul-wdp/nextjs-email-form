@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/Home/Home'
+import { ConfigProvider } from "antd";
+import en_GB from "antd/locale/en_GB";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <Home />
+    <ConfigProvider locale={en_GB}>
+      <Home />
+    </ConfigProvider>
   )
 }
 
