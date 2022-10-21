@@ -1,9 +1,9 @@
 import React from 'react';
-import HeaderStyles from "./header.module.css";
+import "./Header.css";
 
 const Header = () => {
   return (
-    <div className={HeaderStyles.header}>To Do App</div>
+    <div className="header">To Do App</div>
   )
 }
 
