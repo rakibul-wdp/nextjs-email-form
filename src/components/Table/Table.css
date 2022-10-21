@@ -1,0 +1,22 @@
+.todo__date {
+  max-width: 80px;
+}
+
+.save-button-active {
+  display: inline-block;
+}
+
+.save-button-unactive {
+  display: none;
+}
+
+.edit-button-active {
+  display: inline-block;
+}
+
+.edit-button-unactive {
+  display: none;
+}
+.table__search {
+  margin-top: 30px;
+}
