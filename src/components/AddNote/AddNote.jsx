@@ -41,7 +41,6 @@ const AddNote = ({ input, setInput, desc, setDesc, todo, setTodo, setOriginalTod
   };
 
   const onFormSubmit = (e) => {
-
     e.preventDefault();
     openNotification();
     setOriginalTodo([...todo, { id: todo.length + 1, timeStamp: timeStamp, title: input, Description: desc, DueDate: startDate, labels: tags, st: st }]);
@@ -76,64 +75,55 @@ const AddNote = ({ input, setInput, desc, setDesc, todo, setTodo, setOriginalTod
   });
 
 
-  return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-
-      <div className='form__container'>
-        <form onSubmit={onFormSubmit} className='todo__form'>
-          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Title of Note :-</div>
-          <input
-            type="text"
-            placeholder='Enter a Note Title..'
-            className='todo__input'
-            value={input}
-            required
-            onChange={onInputChange}
-          />
-          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Description of Note :-</div>
-          <textarea
-            placeholder='Enter the description '
-            className='todo__desc'
-            value={desc}
-            required
-            onChange={onDescSChange}
-          />
-          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Any Tags for Note :-</div>
-          <div className='todo__tag'>
-            <Tags tags={tags} setTags={setTags} />
-          </div>
-          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Status of Note :-</div>
-          <Select placeholder='Select status' onChange={handleStatus} value={st}>
-            {
-              stat.map((status, index) => {
-
-                return <Select.Option key={index} value={status}>{status}</Select.Option>
-              })
-            }
-          </Select>
-          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Select End Date :-</div>
-
-          <DatePicker
-            format="YYYY-MM-DD "
-            disabledDate={disabledDate}
-            disabledTime={disabledDateTime}
-            showTime={{
-              defaultValue: dayjs('00:00:00', 'HH:mm:ss'),
-            }}
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            className='todo__date'
-          />
-          {contextHolder}
-          <button className='button__input' onClick={handleClose}>Submit</button>
-        </form>
+  return (<div className='form__container'>
+    <form onSubmit={onFormSubmit} className='todo__form'>
+      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Title of Note :-</div>
+      <input
+        type="text"
+        placeholder='Enter a Note Title..'
+        className='todo__input'
+        value={input}
+        required
+        onChange={onInputChange}
+      />
+      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Description of Note :-</div>
+      <textarea
+        placeholder='Enter the description '
+        className='todo__desc'
+        value={desc}
+        required
+        onChange={onDescSChange}
+      />
+      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Any Tags for Note :-</div>
+      <div className='todo__tag'>
+        <Tags tags={tags} setTags={setTags} />
       </div>
-    </Modal>
+      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Status of Note :-</div>
+      <Select placeholder='Select status' onChange={handleStatus} value={st}>
+        {
+          stat.map((status, index) => {
+
+            return <Select.Option key={index} value={status}>{status}</Select.Option>
+          })
+        }
+      </Select>
+      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Select End Date :-</div>
+
+      <DatePicker
+        format="YYYY-MM-DD "
+        disabledDate={disabledDate}
+        disabledTime={disabledDateTime}
+        showTime={{
+          defaultValue: dayjs('00:00:00', 'HH:mm:ss'),
+        }}
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        className='todo__date'
+      />
+      {contextHolder}
+      <button className='button__input'>Submit</button>
+    </form>
+  </div>
   )
 }
 

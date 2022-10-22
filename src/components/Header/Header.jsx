@@ -12,7 +12,7 @@ const Header = () => {
     <div className="header">
       <h1 className='heading'>To Do App</h1>
       <Button onClick={handleOpen}>Create Note</Button>
-      <AddNote open={open} handleClose={handleClose} />
+      {/* <AddNote open={open} handleClose={handleClose} /> */}
     </div>
   )
 }
