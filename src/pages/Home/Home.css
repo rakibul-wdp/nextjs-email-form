@@ -1,3 +1,15 @@
-.home {
-  color: red;
+.parent__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+.parent__box {
+  min-width: 60vh;
+  min-height: 80vh;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 3px 6px 40px rgb(63, 151, 202);
+  max-width: 85%;
 }

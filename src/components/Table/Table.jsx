@@ -4,8 +4,8 @@ import { Button, Space, Tag, Select, Input, Popconfirm } from 'antd';
 import { useRef, useState } from 'react'
 import { Form } from 'antd';
 import DatePicker from "react-datepicker";
-import Tags from './Tags';
 import './Table.css'
+import Tags from '../Tags/Tags';
 
 
 const Table = ({ todo, setTodo, count, setCount, originalTodo, setOriginalTodo }) => {
