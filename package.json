@@ -9,8 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@ant-design/pro-components": "^2.4.4",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.16",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-datepicker": "^4.11.0",
+    "react-dom": "^18.2.0",
+    "umi-request": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
