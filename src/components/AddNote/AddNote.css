@@ -1,5 +1,9 @@
+.input__field-container {
+  width: 100%;
+}
 .todo__input {
   background-color: rgb(236, 236, 236);
+  min-width: 80%;
   height: 35px;
   border: 3px solid rgb(226, 222, 222);
   padding: 1px;
@@ -9,9 +13,9 @@
   margin-left: 0px;
   border-radius: 5px;
 }
-
 .button__input {
-  margin-left: 40%;
+  margin-left: 43%;
+  margin-top: 3%;
   width: 100px;
   height: 40px;
   border: #d67636;
@@ -24,20 +28,23 @@
   padding: 10px;
 }
 .todo__form {
-  display: flex;
-  flex-direction: column;
   padding: 20px;
   margin: 10px;
   border: 3px solid gray;
   border-radius: 15px;
-  max-width: 65%;
-  width: 50%;
+  max-width: 100%;
+  width: 100%;
   background-color: #ffffff;
 }
 .form__container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.todo__form-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .todo__date {
   max-width: 80px;
@@ -51,17 +58,19 @@
 .todo__tag {
   display: flex;
   flex-direction: row;
-  background-color: rgb(226, 222, 222);
+  background-color: rgb(240, 240, 240);
   border-radius: 5px;
 }
 .todo__tag > * {
   margin: 10px;
   height: 30px;
 }
+.todo__tag-margin {
+  margin-right: 8rem;
+}
 .todo__desc {
-  background: rgb(226, 222, 222);
+  background: rgb(236, 236, 236);
   min-height: 50px;
-  min-width: 170px;
-  margin-right: 10px;
+  min-width: 80%;
   border-radius: 5px;
 }

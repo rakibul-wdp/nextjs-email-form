@@ -6,9 +6,9 @@ import { Select, notification } from 'antd';
 import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
 import Tags from '../Tags/Tags';
-import { Modal } from '@mui/material';
+import { PlusCircleOutlined } from '@ant-design/icons';
 
-const AddNote = ({ input, setInput, desc, setDesc, todo, setTodo, setOriginalTodo, handleClose, open }) => {
+const AddNote = ({ input, setInput, desc, setDesc, todo, setTodo, setOriginalTodo }) => {
 
 
   const [api, contextHolder] = notification.useNotification();
@@ -77,51 +77,65 @@ const AddNote = ({ input, setInput, desc, setDesc, todo, setTodo, setOriginalTod
 
   return (<div className='form__container'>
     <form onSubmit={onFormSubmit} className='todo__form'>
-      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Title of Note :-</div>
-      <input
-        type="text"
-        placeholder='Enter a Note Title..'
-        className='todo__input'
-        value={input}
-        required
-        onChange={onInputChange}
-      />
-      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Description of Note :-</div>
-      <textarea
-        placeholder='Enter the description '
-        className='todo__desc'
-        value={desc}
-        required
-        onChange={onDescSChange}
-      />
-      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Any Tags for Note :-</div>
-      <div className='todo__tag'>
-        <Tags tags={tags} setTags={setTags} />
+      <div className="todo__form-input">
+        <div className="input__field-container">
+          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Title</div>
+          <input
+            type="text"
+            placeholder='Enter a Note Title..'
+            className='todo__input'
+            value={input}
+            required
+            onChange={onInputChange}
+          />
+        </div>
+        <div className="input__field-container">
+          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Description</div>
+          <textarea
+            placeholder='Enter the description '
+            className='todo__desc'
+            value={desc}
+            required
+            onChange={onDescSChange}
+            rows="1"
+            cols="20"
+          />
+        </div>
+        <div className="input__field-container todo__tag-margin">
+          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Tags</div>
+          <div className='todo__tag'>
+            <Tags tags={tags} setTags={setTags} />
+          </div>
+        </div>
+        <div className="input__field-container">
+          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Status</div>
+          <Select placeholder='Select status' onChange={handleStatus} value={st}>
+            {
+              stat.map((status, index) => {
+
+                return <Select.Option key={index} value={status}>{status}</Select.Option>
+              })
+            }
+          </Select>
+        </div>
+        <div className="input__field-container">
+          <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>End Date</div>
+
+          <DatePicker
+            format="YYYY-MM-DD "
+            disabledDate={disabledDate}
+            disabledTime={disabledDateTime}
+            showTime={{
+              defaultValue: dayjs('00:00:00', 'HH:mm:ss'),
+            }}
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            className='todo__date'
+          />
+        </div>
       </div>
-      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Enter Status of Note :-</div>
-      <Select placeholder='Select status' onChange={handleStatus} value={st}>
-        {
-          stat.map((status, index) => {
-
-            return <Select.Option key={index} value={status}>{status}</Select.Option>
-          })
-        }
-      </Select>
-      <div style={{ margin: "10px", marginLeft: "0", fontWeight: "500", fontSize: "1.5rem" }}>Select End Date :-</div>
-
-      <DatePicker
-        format="YYYY-MM-DD "
-        disabledDate={disabledDate}
-        disabledTime={disabledDateTime}
-        showTime={{
-          defaultValue: dayjs('00:00:00', 'HH:mm:ss'),
-        }}
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        className='todo__date'
-      />
       {contextHolder}
-      <button className='button__input'>Submit</button>
+      <button className='button__input'><PlusCircleOutlined /> Add</button>
     </form>
   </div>
   )
