@@ -10,19 +10,36 @@ export default function Home() {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setUserInput({
-      ...userInput,
-      [name]: value,
-    });
+    setUserInput((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: userInput.name ? "" : "Name is required",
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInput.email)
+        ? ""
+        : "Invalid email address",
+      message: userInput.message ? "" : "Message is required",
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some((err) => err);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
@@ -61,39 +78,64 @@ export default function Home() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Your Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={userInput.name}
-          onChange={handleChange}
-          required
-        />
+    <div className="min-h-screen flex items-start justify-center px-4">
+      <div className="w-full max-w-md bg-white dark:bg-zinc-900 shadow-lg rounded-2xl p-8 space-y-6 border dark:border-zinc-800">
+        <h2 className="text-2xl font-semibold text-center text-zinc-900 dark:text-white">
+          Contact Us
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-1 text-sm font-medium">Your Name</label>
+            <input
+              type="text"
+              name="name"
+              value={userInput.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg bg-zinc-50 dark:bg-zinc-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name}</p>
+            )}
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">Your Email</label>
+            <input
+              type="email"
+              name="email"
+              value={userInput.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg bg-zinc-50 dark:bg-zinc-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+            {errors.email && (
+              <p className="text-sm text-red-500">{errors.email}</p>
+            )}
+          </div>
+          <div>
+            <label className="block mb-1 text-sm font-medium">
+              Your Message
+            </label>
+            <textarea
+              name="message"
+              rows={4}
+              value={userInput.message}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg bg-zinc-50 dark:bg-zinc-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+            {errors.message && (
+              <p className="text-sm text-red-500">{errors.message}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
-      <div>
-        <label>Your Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={userInput.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Your Message:</label>
-        <textarea
-          name="message"
-          value={userInput.message}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit" className="cursor-pointer">
-        Send Message
-      </button>
-    </form>
+    </div>
   );
 }
